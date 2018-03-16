@@ -14,20 +14,12 @@ import {
 } from 'antd';
 import { Box } from 'grid-styled';
 import { Formik } from 'formik';
-import Yup from 'yup';
 
-import todoStore from './todo-store';
+import store from './todo-store';
 import Todos from './components/Todos';
+import AddTodo from './components/AddTodo';
 import './styles.css';
 import 'antd/dist/antd.css';
-
-const store = todoStore();
-
-const schema = Yup.object().shape({
-  text: Yup.string()
-    .min(4, 'Too short.')
-    .required('Required.')
-});
 
 const sleep = (ms = 1000) => new Promise(r => setTimeout(r, ms));
 
@@ -40,6 +32,20 @@ const App = observer(({ store }) => (
             <Card title="Things to be done 🐜">
               {Boolean(store.count) && (
                 <Box py={2}>
+                  <Box pb={2}>
+                    <Tag.CheckableTag
+                      checked={store.filter === ''}
+                      onChange={e => store.setFilter('')}
+                    >
+                      All
+                    </Tag.CheckableTag>
+                    <Tag.CheckableTag
+                      checked={store.filter === 'done'}
+                      onChange={e => store.setFilter('done')}
+                    >
+                      Done
+                    </Tag.CheckableTag>
+                  </Box>
                   <Todos
                     dataSource={store.filtered}
                     onDoubleClick={todo => {
@@ -53,9 +59,7 @@ const App = observer(({ store }) => (
                 </Box>
               )}
               <Box py={2}>
-                <Formik
-                  initialValues={{ text: '' }}
-                  validationSchema={schema}
+                <AddTodo
                   onSubmit={async (values, { setSubmitting, resetForm }) => {
                     setSubmitting(true);
                     await sleep();
@@ -63,49 +67,6 @@ const App = observer(({ store }) => (
                     setSubmitting(false);
                     resetForm();
                   }}
-                  render={({
-                    values,
-                    errors,
-                    touched,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    isSubmitting,
-                    isValid
-                  }) => (
-                    <Fragment>
-                      <form onSubmit={handleSubmit}>
-                        <div className={errors.text ? 'has-error' : ''}>
-                          <Input
-                            value={values.text}
-                            onChange={handleChange}
-                            name="text"
-                            onBlur={handleBlur}
-                          />
-                          {touched.text &&
-                          errors.text && (
-                            <div className="ant-form-explain">
-                              {errors.text}
-                            </div>
-                          )}
-                        </div>
-                        <Row justify="end" type="flex">
-                          <Col>
-                            <Box py={3}>
-                              <Button
-                                htmlType="submit"
-                                type="primary"
-                                disabled={isSubmitting || !isValid}
-                                loading={isSubmitting}
-                              >
-                                Add todo
-                              </Button>
-                            </Box>
-                          </Col>
-                        </Row>
-                      </form>
-                    </Fragment>
-                  )}
                 />
               </Box>
             </Card>
