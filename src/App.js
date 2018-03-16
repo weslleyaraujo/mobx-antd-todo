@@ -4,10 +4,6 @@ import { observer } from "mobx-react";
 import { Layout, Col, Row, Card, Tag } from "antd";
 import { Box } from "grid-styled";
 
-import store from "./store";
-// NOTE: for some reason import type Store leads to a
-// "no-unused-vars" warning on eslint.
-// eslint-disable-next-line
 import { type Store } from "./store";
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
@@ -17,7 +13,7 @@ import "antd/dist/antd.css";
 const sleep = (ms: number = 1000): Promise<void> =>
   new Promise(r => setTimeout(r, ms));
 
-function App({ store: Store }) {
+export function App({ store }: { store: Store }) {
   return (
     <Layout>
       <Box p={3}>

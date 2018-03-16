@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders App correctly 1`] = `
+<Adapter>
+  <Box
+    p={3}
+    theme={
+      Object {
+        "breakpoints": Array [
+          "40em",
+          "52em",
+          "64em",
+        ],
+        "fontSizes": Array [
+          12,
+          14,
+          16,
+          20,
+          24,
+          32,
+          48,
+          64,
+          96,
+          128,
+        ],
+        "space": Array [
+          0,
+          4,
+          8,
+          16,
+          32,
+          64,
+          128,
+          256,
+          512,
+        ],
+      }
+    }
+  >
+    <Row
+      gutter={0}
+      justify="center"
+      span={24}
+      type="flex"
+    >
+      <Col
+        lg={
+          Object {
+            "span": 12,
+          }
+        }
+        span={24}
+        xl={
+          Object {
+            "span": 12,
+          }
+        }
+      >
+        <Box
+          px={2}
+          theme={
+            Object {
+              "breakpoints": Array [
+                "40em",
+                "52em",
+                "64em",
+              ],
+              "fontSizes": Array [
+                12,
+                14,
+                16,
+                20,
+                24,
+                32,
+                48,
+                64,
+                96,
+                128,
+              ],
+              "space": Array [
+                0,
+                4,
+                8,
+                16,
+                32,
+                64,
+                128,
+                256,
+                512,
+              ],
+            }
+          }
+        >
+          <Card
+            title="Things to be done 🐜"
+          >
+            <Box
+              py={2}
+              theme={
+                Object {
+                  "breakpoints": Array [
+                    "40em",
+                    "52em",
+                    "64em",
+                  ],
+                  "fontSizes": Array [
+                    12,
+                    14,
+                    16,
+                    20,
+                    24,
+                    32,
+                    48,
+                    64,
+                    96,
+                    128,
+                  ],
+                  "space": Array [
+                    0,
+                    4,
+                    8,
+                    16,
+                    32,
+                    64,
+                    128,
+                    256,
+                    512,
+                  ],
+                }
+              }
+            >
+              <AddTodo
+                onSubmit={[Function]}
+              />
+            </Box>
+          </Card>
+        </Box>
+      </Col>
+    </Row>
+  </Box>
+</Adapter>
+`;

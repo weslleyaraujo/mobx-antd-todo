@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Todos correctly 1`] = `
+<List
+  bordered={true}
+  dataSource={Array []}
+  loading={false}
+  pagination={false}
+  prefixCls="ant-list"
+  renderItem={[Function]}
+  split={true}
+/>
+`;

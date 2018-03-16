@@ -16,12 +16,18 @@
     "yup": "0.24.1"
   },
   "devDependencies": {
+    "enzyme-adapter-react-16": "^1.1.1",
     "flow-bin": "^0.68.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0"
+    "lint-staged": "^7.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-to-json": "^3.3.3"
   },
   "lint-staged": {
     "*.{js,json,css,md}": ["prettier --write", "git add"]
+  },
+  "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   },
   "scripts": {
     "start": "react-scripts start",
