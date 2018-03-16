@@ -4,9 +4,11 @@ import yup from 'yup';
 import { Box } from 'grid-styled';
 import { Formik } from 'formik';
 import { Input } from 'antd';
-import { Layout, Col, Row, Card, Button, Tooltip, List, Tag } from 'antd';
+import { Col, Row, Button } from 'antd';
 
-const schema = yup.object().shape({
+type Validation = ?{ [key: string]: string } | {};
+
+const schema: (...args: any) => Validation = yup.object().shape({
   text: yup
     .string()
     .min(4, 'Too short.')
@@ -37,6 +39,7 @@ function AddTodo({ onSubmit }: { onSubmit: (...args: any) => any }) {
                 onChange={handleChange}
                 name="text"
                 onBlur={handleBlur}
+                disabled={isSubmitting}
               />
               {touched.text &&
               errors.text && (

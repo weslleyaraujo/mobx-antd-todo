@@ -1,28 +1,21 @@
 // @flow
-import React, { Fragment } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
-import { render } from 'react-dom';
-import {
-  Layout,
-  Col,
-  Row,
-  Card,
-  Input,
-  Button,
-  Tooltip,
-  List,
-  Tag
-} from 'antd';
+import { Layout, Col, Row, Card, Tag } from 'antd';
 import { Box } from 'grid-styled';
-import { Formik } from 'formik';
 
-import store, { type Store } from './todo-store';
+import store from './todo-store';
+// NOTE: for some reason import type Store leads to a
+// "no-unused-vars" warning on eslint.
+// eslint-disable-next-line
+import type Store from './todo-store';
 import Todos from './components/Todos';
 import AddTodo from './components/AddTodo';
 import './styles.css';
 import 'antd/dist/antd.css';
 
-const sleep = (ms = 1000) => new Promise(r => setTimeout(r, ms));
+const sleep = (ms: number = 1000): Promise<void> =>
+  new Promise(r => setTimeout(r, ms));
 
 function App({ store: Store }) {
   return (
