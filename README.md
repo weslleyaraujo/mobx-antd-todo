@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-✨ Just another todo-list app, this time built with [Mobx](https://github.com/mobxjs/mobx) and using the awesome [Ant Design](https://github.com/ant-design/ant-design) library. btw, I also added some [Flow](https://github.com/facebook/flow) here and there 💻
+✨ Just another todo-list app, this time built with [Mobx](https://github.com/mobxjs/mobx) and using the awesome [Ant Design](https://github.com/ant-design/ant-design) library. I also added some [Flow](https://github.com/facebook/flow) here and there 💻
 
 ## Motivation
 
@@ -14,7 +14,7 @@ I have zero experience with Flow, this is my first project trying it as well. An
 Please, feel free to open some issues to any improvements you find in this project. As mentioned the main motivation here is to learn
 something new
 
-Be nice 🕊
+Be nice 🕊 ✌️
 
 ## Setup
 
