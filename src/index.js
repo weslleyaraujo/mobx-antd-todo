@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { observable } from 'mobx';
 import { observer } from 'mobx-react';
 import { render } from 'react-dom';
 import {
@@ -17,10 +16,11 @@ import { Box } from 'grid-styled';
 import { Formik } from 'formik';
 import Yup from 'yup';
 
+import todoStore from './todo-store';
 import './styles.css';
 import 'antd/dist/antd.css';
 
-// TODO: add flow
+const store = todoStore();
 
 const schema = Yup.object().shape({
   text: Yup.string()
@@ -28,33 +28,6 @@ const schema = Yup.object().shape({
     .required('Required.')
 });
 
-const store = observable({
-  filter: '',
-  todos: [],
-  addTodo({ text, id }) {
-    store.todos.push({ id, text, status: '' });
-  },
-  setFilter(type) {
-    store.filter = type;
-  },
-  setStatus({ id, status }) {
-    store.todos = store.todos.map(todo => ({
-      ...todo,
-      status: todo.id === id ? status : todo.status
-    }));
-  },
-  get count() {
-    return store.todos.length;
-  },
-  get filtered() {
-    const { filter } = store;
-    if (!Boolean(filter)) {
-      return store.todos;
-    }
-
-    return store.todos.filter(s => s.status === filter);
-  }
-});
 
 const sleep = (ms = 1000) => new Promise(r => setTimeout(r, ms));
 
@@ -81,7 +54,6 @@ const App = observer(({ store }) => (
                       Done
                     </Tag.CheckableTag>
                   </Box>
-                  {/* TODO: move it to store */}
                   <List
                     bordered
                     dataSource={store.filtered}
@@ -89,16 +61,20 @@ const App = observer(({ store }) => (
                       <List.Item
                         style={{
                           cursor: 'pointer',
+                          userSelect: 'none',
                           textDecoration:
                             todo.status === 'done' ? 'line-through' : 'none'
                         }}
                         onDoubleClick={event => {
                           event.preventDefault();
-                          const { id } = todo;
-                          store.setStatus({ id, status: 'done' });
+                          const { id, status } = todo;
+                          store.setStatus({
+                            id,
+                            status: status === 'done' ? '' : 'done'
+                          });
                         }}
                       >
-                        <Tooltip title="Double click to mark as done">
+                        <Tooltip title="Double click to change status">
                           {todo.text}
                         </Tooltip>
                       </List.Item>
