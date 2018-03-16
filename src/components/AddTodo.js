@@ -13,7 +13,7 @@ const schema = yup.object().shape({
     .required('Required.')
 });
 
-function AddTodo({ onSubmit }: { onSubmit: (...args: any) => void }) {
+function AddTodo({ onSubmit }: { onSubmit: (...args: any) => any }) {
   return (
     <Formik
       initialValues={{ text: '' }}

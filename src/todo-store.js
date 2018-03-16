@@ -9,43 +9,51 @@ export type Todo = {
   status: Status
 };
 
+type Todos = Array<Todo>;
+
+type addTodo = { text: string, id: string };
+type setStatus = { id: string, status: Status };
+
 export type Store = {
   filter: Status,
-  todos: Array<Todo>
+  todos: Todos,
+  addTodo: addTodo => void,
+  setFilter: Status => void,
+  setStatus: setStatus => void,
+  count: number,
+  filtered: Todos
 };
 
-const store: Store = observable(
-  {
-    filter: '',
-    todos: [],
+const store: Store = observable({
+  filter: '',
+  todos: [],
 
-    addTodo({ text, id }: { text: string, id: string }) {
-      this.todos.push({ id, text, status: '' });
-    },
+  get count(): number {
+    return this.todos.length;
+  },
 
-    setFilter(type: Status) {
-      this.filter = type;
-    },
-    setStatus({ id, status }: { id: string, status: Status }) {
-      this.todos = this.todos.map(todo => ({
-        ...todo,
-        status: todo.id === id ? status : todo.status
-      }));
-    },
-
-    get count(): number {
-      return this.todos.length;
-    },
-
-    get filtered(): Array<Todo> {
-      const { filter } = this;
-      if (!Boolean(filter)) {
-        return this.todos;
-      }
-
-      return this.todos.filter(s => s.status === filter);
+  get filtered(): Array<Todo> {
+    const { filter } = this;
+    if (!Boolean(filter)) {
+      return this.todos;
     }
+
+    return this.todos.filter(s => s.status === filter);
+  },
+
+  addTodo({ text, id }: addTodo) {
+    this.todos.push({ id, text, status: '' });
+  },
+
+  setFilter(type: Status) {
+    this.filter = type;
+  },
+  setStatus({ id, status }: setStatus) {
+    this.todos = this.todos.map(todo => ({
+      ...todo,
+      status: todo.id === id ? status : todo.status
+    }));
   }
-);
+});
 
 export default store;
