@@ -134,6 +134,47 @@ exports[`renders App correctly 1`] = `
               />
             </Box>
           </Card>
+          <Box
+            py={2}
+            theme={
+              Object {
+                "breakpoints": Array [
+                  "40em",
+                  "52em",
+                  "64em",
+                ],
+                "fontSizes": Array [
+                  12,
+                  14,
+                  16,
+                  20,
+                  24,
+                  32,
+                  48,
+                  64,
+                  96,
+                  128,
+                ],
+                "space": Array [
+                  0,
+                  4,
+                  8,
+                  16,
+                  32,
+                  64,
+                  128,
+                  256,
+                  512,
+                ],
+              }
+            }
+          >
+            <a
+              href="https://github.com/weslleyaraujo/mobx-antd-todo"
+            >
+              Github
+            </a>
+          </Box>
         </Box>
       </Col>
     </Row>

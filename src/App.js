@@ -64,6 +64,15 @@ export function App({ store }: { store: Store }) {
                   />
                 </Box>
               </Card>
+              <Box py={2}>
+                <a
+                  rel="noopener noreferrer"
+                  href="https://github.com/weslleyaraujo/mobx-antd-todo"
+                  target="_blank"
+                >
+                  Github
+                </a>
+              </Box>
             </Box>
           </Col>
         </Row>
