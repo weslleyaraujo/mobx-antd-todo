@@ -61,8 +61,8 @@ const sleep = (ms = 1000) => new Promise(r => setTimeout(r, ms));
 const App = observer(({ store }) => (
   <Layout>
     <Box p={3}>
-      <Row justify="center">
-        <Col>
+      <Row justify="center" span={24} type="flex">
+        <Col span={24} lg={{ span: 12 }} xl={{ span: 12 }}>
           <Box px={2}>
             <Card title="Things to be done 🐜">
               {Boolean(store.count) && (
@@ -86,22 +86,22 @@ const App = observer(({ store }) => (
                     bordered
                     dataSource={store.filtered}
                     renderItem={todo => (
-                      <Tooltip title="Double click to mark as done">
-                        <List.Item
-                          style={{
-                            cursor: 'pointer',
-                            textDecoration:
-                              todo.status === 'done' ? 'line-through' : 'none'
-                          }}
-                          onDoubleClick={event => {
-                            event.preventDefault();
-                            const { id } = todo;
-                            store.setStatus({ id, status: 'done' });
-                          }}
-                        >
+                      <List.Item
+                        style={{
+                          cursor: 'pointer',
+                          textDecoration:
+                            todo.status === 'done' ? 'line-through' : 'none'
+                        }}
+                        onDoubleClick={event => {
+                          event.preventDefault();
+                          const { id } = todo;
+                          store.setStatus({ id, status: 'done' });
+                        }}
+                      >
+                        <Tooltip title="Double click to mark as done">
                           {todo.text}
-                        </List.Item>
-                      </Tooltip>
+                        </Tooltip>
+                      </List.Item>
                     )}
                   />
                 </Box>
@@ -137,11 +137,11 @@ const App = observer(({ store }) => (
                             onBlur={handleBlur}
                           />
                           {touched.text &&
-                            errors.text && (
-                              <div className="ant-form-explain">
-                                {errors.text}
-                              </div>
-                            )}
+                          errors.text && (
+                            <div className="ant-form-explain">
+                              {errors.text}
+                            </div>
+                          )}
                         </div>
                         <Row justify="end" type="flex">
                           <Col>
