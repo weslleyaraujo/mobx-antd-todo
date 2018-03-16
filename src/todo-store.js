@@ -3,19 +3,19 @@ import { observable } from 'mobx';
 
 type Status = 'done' | '';
 
-type Todo = {
+export type Todo = {
   text: string,
   id: string,
   status: Status
 };
 
-type Store = {
-  filter: string,
+export type Store = {
+  filter: Status,
   todos: Array<Todo>
 };
 
-export default (): Store =>
-  observable({
+const store: Store = observable(
+  {
     filter: '',
     todos: [],
 
@@ -45,4 +45,7 @@ export default (): Store =>
 
       return this.todos.filter(s => s.status === filter);
     }
-  });
+  }
+);
+
+export default store;

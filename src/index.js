@@ -17,6 +17,7 @@ import { Formik } from 'formik';
 import Yup from 'yup';
 
 import todoStore from './todo-store';
+import Todos from './components/Todos';
 import './styles.css';
 import 'antd/dist/antd.css';
 
@@ -27,7 +28,6 @@ const schema = Yup.object().shape({
     .min(4, 'Too short.')
     .required('Required.')
 });
-
 
 const sleep = (ms = 1000) => new Promise(r => setTimeout(r, ms));
 
@@ -40,45 +40,15 @@ const App = observer(({ store }) => (
             <Card title="Things to be done 🐜">
               {Boolean(store.count) && (
                 <Box py={2}>
-                  <Box pb={2}>
-                    <Tag.CheckableTag
-                      checked={store.filter === ''}
-                      onChange={e => store.setFilter('')}
-                    >
-                      All
-                    </Tag.CheckableTag>
-                    <Tag.CheckableTag
-                      checked={store.filter === 'done'}
-                      onChange={e => store.setFilter('done')}
-                    >
-                      Done
-                    </Tag.CheckableTag>
-                  </Box>
-                  <List
-                    bordered
+                  <Todos
                     dataSource={store.filtered}
-                    renderItem={todo => (
-                      <List.Item
-                        style={{
-                          cursor: 'pointer',
-                          userSelect: 'none',
-                          textDecoration:
-                            todo.status === 'done' ? 'line-through' : 'none'
-                        }}
-                        onDoubleClick={event => {
-                          event.preventDefault();
-                          const { id, status } = todo;
-                          store.setStatus({
-                            id,
-                            status: status === 'done' ? '' : 'done'
-                          });
-                        }}
-                      >
-                        <Tooltip title="Double click to change status">
-                          {todo.text}
-                        </Tooltip>
-                      </List.Item>
-                    )}
+                    onDoubleClick={todo => {
+                      const { id, status } = todo;
+                      store.setStatus({
+                        id,
+                        status: status === 'done' ? '' : 'done'
+                      });
+                    }}
                   />
                 </Box>
               )}
