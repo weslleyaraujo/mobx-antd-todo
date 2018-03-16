@@ -1,18 +1,18 @@
 // @flow
-import React from 'react';
-import { observer } from 'mobx-react';
-import { Layout, Col, Row, Card, Tag } from 'antd';
-import { Box } from 'grid-styled';
+import React from "react";
+import { observer } from "mobx-react";
+import { Layout, Col, Row, Card, Tag } from "antd";
+import { Box } from "grid-styled";
 
-import store from './todo-store';
+import store from "./store";
 // NOTE: for some reason import type Store leads to a
 // "no-unused-vars" warning on eslint.
 // eslint-disable-next-line
-import type Store from './todo-store';
-import Todos from './components/Todos';
-import AddTodo from './components/AddTodo';
-import './styles.css';
-import 'antd/dist/antd.css';
+import { type Store } from "./store";
+import Todos from "./components/Todos";
+import AddTodo from "./components/AddTodo";
+import "./styles.css";
+import "antd/dist/antd.css";
 
 const sleep = (ms: number = 1000): Promise<void> =>
   new Promise(r => setTimeout(r, ms));
@@ -29,14 +29,14 @@ function App({ store: Store }) {
                   <Box py={2}>
                     <Box pb={2}>
                       <Tag.CheckableTag
-                        checked={store.filter === ''}
-                        onChange={e => store.setFilter('')}
+                        checked={store.filter === ""}
+                        onChange={e => store.setFilter("")}
                       >
                         All
                       </Tag.CheckableTag>
                       <Tag.CheckableTag
-                        checked={store.filter === 'done'}
-                        onChange={e => store.setFilter('done')}
+                        checked={store.filter === "done"}
+                        onChange={e => store.setFilter("done")}
                       >
                         Done
                       </Tag.CheckableTag>
@@ -47,7 +47,7 @@ function App({ store: Store }) {
                         const { id, status } = todo;
                         store.setStatus({
                           id,
-                          status: status === 'done' ? '' : 'done'
+                          status: status === "done" ? "" : "done"
                         });
                       }}
                     />

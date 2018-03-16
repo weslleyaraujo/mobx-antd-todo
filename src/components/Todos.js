@@ -1,8 +1,8 @@
 // @flow
-import React from 'react';
-import { List, Tooltip } from 'antd';
+import React from "react";
+import { List, Tooltip } from "antd";
 
-import { type Todo } from '../todo-store';
+import { type Todo } from "../store";
 
 function Todos({
   onDoubleClick,
@@ -18,9 +18,9 @@ function Todos({
       renderItem={todo => (
         <List.Item
           style={{
-            cursor: 'pointer',
-            userSelect: 'none',
-            textDecoration: todo.status === 'done' ? 'line-through' : 'none'
+            cursor: "pointer",
+            userSelect: "none",
+            textDecoration: todo.status === "done" ? "line-through" : "none"
           }}
           onDoubleClick={event => {
             event.preventDefault();
