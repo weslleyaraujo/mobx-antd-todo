@@ -4,7 +4,6 @@
   "description": "",
   "keywords": [],
   "homepage": "https://codesandbox.io/s/new",
-  "main": "src/index.js",
   "dependencies": {
     "antd": "3.3.0",
     "formik": "0.11.11",
@@ -16,11 +15,14 @@
     "react-scripts": "1.1.0",
     "yup": "0.24.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "flow-bin": "^0.68.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "flow": "flow"
   }
 }
